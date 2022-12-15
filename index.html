@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DrumKit ! Play the multiple tune</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Press the key Enjoy The Drum Kit Tune</h1>
+        <div class="keys">
+            <div data-key="65" class="tune">A</div>
+            <div data-key="83" class="tune">S</div>
+            <div data-key="68" class="tune">D</div>
+            <div data-key="70" class="tune">F</div>
+            <div data-key="74" class="tune">J</div>
+            <div data-key="75" class="tune">K</div>
+            <div data-key="76" class="tune">L</div>
+        </div>
+        <div class="Key2">
+            <div data-key="32" class="tune">SPACE</div>
+        </div>
+    </div>
+
+
+    <audio data-key="65" src="music/mixkit-basketball-training-349.mp3"></audio>
+    <audio data-key="83" src="music/mixkit-dont-go-496.mp3"></audio>
+    <audio data-key="68" src="music/mixkit-epic-games-76.mp3"></audio>
+    <audio data-key="70" src="music/mixkit-epical-drums-01-676.mp3"></audio>
+    <audio data-key="74" src="music/mixkit-feeling-happy-5.mp3"></audio>
+    <audio data-key="75" src="music/mixkit-gimme-that-groove-872.mp3"></audio>
+    <audio data-key="76" src="music/mixkit-serene-view-443.mp3"></audio>
+    <audio data-key="32" src="music/mixkit-new-house-279.mp3"></audio>
+
+    <script>
+        let isPlaying = false;
+        window.addEventListener('keydown', (e) => {
+            let audio = document.querySelector(`audio[data-key='${e.keyCode}']`);
+            let key = document.querySelector(`.tune[data-key='${e.keyCode}']`);
+
+            if (!audio) return
+
+            if (!isPlaying) {
+                isPlaying = true
+                audio.currentTime = 0;
+                audio.play();
+                key.classList.add('playing');
+            } else {
+                isPlaying = false
+                audio.pause();
+                key.classList.remove('playing');
+            }
+        });
+    </script>
+</body>
+
+</html>
